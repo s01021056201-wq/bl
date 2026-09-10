@@ -1,0 +1,2 @@
+import AstroLayout from "../components/astro/AstroLayout";import {Link} from "react-router-dom";import GradientText from "../components/astro/GradientText";
+export default function PageNotFound(){return <AstroLayout><div className="text-center py-20"><GradientText as="h1" className="font-heading text-3xl block">The stars lost this page.</GradientText><Link to="/" className="inline-block mt-6 px-5 py-3 border border-fuchsia/40"><span>Return to Astralis →</span></Link></div></AstroLayout>}

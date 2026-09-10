@@ -1,0 +1,7 @@
+import AsciiBox from "./AsciiBox";
+import GradientText from "./GradientText";
+import {getLuckyTimes,getNextLuckyTime,PLANETS} from "../../lib/astrology";
+export default function LuckyTime(){
+  const now=new Date(),next=getNextLuckyTime(now),all=getLuckyTimes(now),mins=next.minutesUntil,cd=mins>=60?`${Math.floor(mins/60)}h ${mins%60}m`:`${mins}m`;
+  return <AsciiBox title="Your Lucky Time" glyph="⌛" className="mt-7"><div className="text-center"><p className="font-mono uppercase tracking-[.25em] text-[9px]">Next Lucky Window</p><GradientText as="p" className="font-heading text-3xl block mt-2">{next.startStr} – {next.endStr}</GradientText><p className="mt-1">Ruled by {PLANETS[next.planet].symbol} {next.planet} · begins in {cd}</p></div><div className="border-t border-dashed border-fuchsia/20 my-6"/><p className="font-mono uppercase tracking-[.2em] text-[9px] mb-3">All Lucky Hours This Cycle</p><div className="grid grid-cols-2 sm:grid-cols-4 gap-2">{all.map((x,i)=><div key={i} className="uv-border-soft p-3 text-center"><GradientText as="p" className="font-mono text-xs block">{x.startStr}</GradientText><p className="text-xs mt-1">{PLANETS[x.planet].symbol} {x.planet}</p></div>)}</div><p className="text-[11px] italic opacity-65 mt-5">Planetary hours follow the traditional Chaldean sequence, here modeled as equal one-hour intervals from an approximate 6:00 AM sunrise.</p></AsciiBox>;
+}
